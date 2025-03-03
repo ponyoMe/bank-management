@@ -15,17 +15,29 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register", "/styles.css/**").permitAll()
+                        .requestMatchers("/auth/login", "/auth/register", "/styles.css/**", "/js/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/dashboard").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/login")
-                        .loginProcessingUrl("/process-login")  // ✅ Match with form action
-                        .usernameParameter("email") // ✅ Tells Spring Security to use "email" instead of "username"
+                        .loginProcessingUrl("/process-login")
+                        .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/dashboard", true) // ✅ Redirects to dashboard after login
+                        .successHandler((request, response, authentication) -> {
+                            authentication.getAuthorities().forEach(grantedAuthority -> {
+                                try {
+                                    if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                                        response.sendRedirect("/admin/dashboard");
+                                    } else {
+                                        response.sendRedirect("/dashboard");
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        })
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )
@@ -40,6 +52,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

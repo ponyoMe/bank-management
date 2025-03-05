@@ -2,6 +2,9 @@ package com.example.bank_management.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -11,19 +14,39 @@ public class Account {
     private Long id;
 
     private String accountType;
-    private double balance;
+    private String name;
+    private BigDecimal balance;
+    private LocalDateTime creationDate;
+    private LocalDateTime lockedUntil;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public LocalDateTime getLockedUntil() {
+        return lockedUntil;
+    }
+
+    public void setLockedUntil(LocalDateTime lockedUntil) {
+        this.lockedUntil = lockedUntil;
+    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false) // Foreign key to Customer
     private Customer customer;
 
-    public Account() {}
-
-    public Account(String accountType, double balance, Customer customer) {
-        this.accountType = accountType;
-        this.balance = balance;
-        this.customer = customer;
-    }
 
     public Long getId() {
         return id;
@@ -41,11 +64,12 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public double getBalance() {
+
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 

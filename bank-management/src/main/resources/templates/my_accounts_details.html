@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Account Details</h2>
+
+    <div class="details">
+        <p><strong>Account ID:</strong> <span th:text="${account.id}"></span></p>
+        <p><strong>Account Type:</strong> <span th:text="${account.accountType}"></span></p>
+        <p><strong>Balance:</strong> $<span th:text="${account.balance}"></span></p>
+        <p><strong>Creation Date:</strong> <span th:text="${account.creationDate}"></span></p>
+        <p><strong>Locked Until:</strong> <span th:text="${account.lockedUntil}"></span></p>
+        <p><strong>Customer Name:</strong> <span th:text="${account.customer.name}"></span></p>
+    </div>
+
+    <a href="/accounts" class="back-link">← Back to Accounts</a>
+</div>
+
+</body>
+</html>

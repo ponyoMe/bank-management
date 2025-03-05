@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Account List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Account List</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Account Type</th>
+        <th>Balance</th>
+        <th>Creation Date</th>
+        <th>Locked Until</th>
+        <th>Customer Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${account_list}">
+        <td th:text="${account.id}"></td>
+        <td th:text="${account.accountType}"></td>
+        <td th:text="${account.balance}"></td>
+        <td th:text="${account.creationDate}"></td>
+        <td th:text="${account.lockedUntil}"></td>
+        <td th:text="${account.customer.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:if="${success}" style="color: green;" th:text="${success}"></p>
+<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+
+
+</body>
+</html>

@@ -23,7 +23,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") Customer user, BindingResult result, Model model) {
-        if (customerService.findByEmail(user.getEmail()).isPresent()) {
+        if (customerService.emailExists(user.getEmail())) {
             result.rejectValue("email", "error.user", "An account with this email already exists!");
         }
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Checking Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      width: 50%;
+      margin: auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Checking Account</h2>
+
+  <form action="/my_accounts/create_checking_account" method="post">
+    <label for="account_name">Account Name:</label>
+    <input type="text" id="account_name" name="account_name" th:value="${account_name}" required>
+
+    <button type="submit">Create Account</button>
+  </form>
+
+  <a href="/my_accounts" class="back-link">← Back to Accounts</a>
+</div>
+
+</body>
+</html>

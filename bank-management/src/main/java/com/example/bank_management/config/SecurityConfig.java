@@ -16,8 +16,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/auth/register", "/styles.css/**", "/js/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/dashboard").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN") // now matches "ROLE_ADMIN"
+                        .requestMatchers("/dashboard").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -26,18 +26,13 @@ public class SecurityConfig {
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .successHandler((request, response, authentication) -> {
-                            authentication.getAuthorities().forEach(grantedAuthority -> {
-                                try {
-                                    if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                                        response.sendRedirect("/admin/dashboard");
-                                    } else {
-                                        response.sendRedirect("/dashboard");
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
+                            if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                                response.sendRedirect("/admin/dashboard");
+                            } else {
+                                response.sendRedirect("/my_accounts/");
+                            }
                         })
+
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )

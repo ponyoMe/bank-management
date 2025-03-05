@@ -8,13 +8,13 @@
 <div class="container">
 
 
-<h1 th:text="${welcomeMessage}">Default Welcome Message</h1>
+  <h1 th:text="${welcomeMessage}">Default Welcome Message</h1>
 
-<p>Welcome to your account dashboard.</p>
+  <p>Welcome to user dashboard.</p>
 
-<form th:action="@{/logout}" method="post">
-  <button type="submit">Logout</button>
-</form>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit">Logout</button>
+  </form>
 
 </div>
 </body>

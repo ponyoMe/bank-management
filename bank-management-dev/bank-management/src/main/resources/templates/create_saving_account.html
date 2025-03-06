@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/saving.css">
+  <title>Document</title>
+</head>
+<body>
+<!-- Navbar -->
+<div class="navbar">
+  <div class="profile">
+    <div class="profile-pic" th:text="${customer.name.substring(0,1)}"></div>
+    <div class="profile-name" th:text="${customer.name}"></div>
+    <div class="arrow">▼</div>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="sidebar-item first" onclick="window.location.href='/my_accounts/';">🔑 My Accounts</div>
+  <div class="sidebar-item" onclick="window.location.href='/transaction/';">💰 Transactions</div>
+  <div class="sidebar-item" onclick="window.location.href='/logout';">🚪 Log Out</div>
+</div>
+
+<div class="main-content center">
+  <h2>Saving Account</h2>
+
+  <form action="/my_accounts/create_saving_account" method="post" class="form-row">
+    <input type="text" id="account_name" name="account_name" class="input-field" placeholder="Name" th:value="${account_name}" required>
+
+    <input type="number" id="lock_in_period" name="lock_in_period" class="input-field" placeholder="Lock-in Period Time" th:value="${lock_in_period}" required>
+
+    <button type="submit" class="add-button">Create Account</button>
+  </form>
+
+</div>
+
+
+</body>
+</html>

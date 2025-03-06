@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="/Transactions.css">
+</head>
+<body>
+<div class="container">
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="profile">
+            <div class="profile-pic"
+                 th:text="${customer.getName().charAt(0)}">
+            </div>
+            <div class="profile-name" th:text="${customer.name}"></div>
+            <div class="arrow">›</div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="container-content">
+        <div class="sidebar">
+            <div class="sidebar-item" onclick="window.location.href='/my_accounts/';">🔑 My Accounts</div>
+            <div class="sidebar-item first" onclick="window.location.href='/transaction/';">💰 Transactions</div>
+            <div class="sidebar-item" onclick="window.location.href='/logout';">🚪 Log Out</div>
+        </div>
+        <div class="main-content">
+            <div class="transactions-header">
+                <h1>Transactions</h1>
+                <a href="/reports/pdf">
+                    <button class="download-statement">Download Statement</button>
+                </a>
+            </div>
+
+            <!-- INTERNAL TRANSACTION -->
+            <div class="transaction-box">
+                <h2>Transfer Between Your Accounts</h2>
+                <form action="/transaction/create_internal_transaction" method="post" class="form-row">
+                    <label for="fromAccountInternal">From Account:</label>
+                    <select id="fromAccountInternal" name="fromAccountId" required>
+                        <option value="">Select an Account</option>
+                        <option th:each="account : ${accounts}" th:value="${account.id}" th:text="'ID: ' + ${account.id} + ' - Balance: $' + ${account.balance}"></option>
+                    </select>
+
+                    <label for="toAccountInternal">To Account:</label>
+                    <select id="toAccountInternal" name="toAccountId" required>
+                        <option value="">Select an Account</option>
+                        <option th:each="account : ${accounts}" th:value="${account.id}" th:text="'ID: ' + ${account.id} + ' - Balance: $' + ${account.balance}"></option>
+                    </select>
+
+                    <label for="amountInternal">Amount:</label>
+                    <input type="number" step="0.01" id="amountInternal" name="amount" required>
+
+                    <button type="submit">Transfer</button>
+                </form>
+            </div>
+
+            <!-- EXTERNAL TRANSACTION -->
+            <div class="transaction-box">
+                <h2>Transfer to Another User</h2>
+                <form action="/transaction/create_external_transaction" method="post" class="form-row">
+                    <label for="fromAccountExternal">From Account:</label>
+                    <select id="fromAccountExternal" name="fromAccountId" required>
+                        <option value="">Select an Account</option>
+                        <option th:each="account : ${accounts}" th:value="${account.id}" th:text="'ID: ' + ${account.id} + ' - Balance: $' + ${account.balance}"></option>
+                    </select>
+
+                    <label for="toEmail">Recipient Email:</label>
+                    <input type="email" id="toEmail" name="toEmail" required>
+
+                    <label for="amountExternal">Amount:</label>
+                    <input type="number" step="0.01" id="amountExternal" name="amount" required>
+
+                    <button type="submit">Send Money</button>
+                </form>
+            </div>
+
+            <div class="overview">
+                <h2>Transaction Overview</h2>
+                <p><strong>Total Deposits:</strong> <span id="totalDeposits">$0.00</span></p>
+                <p><strong>Total Withdrawals:</strong> <span id="totalWithdrawals">$0.00</span></p>
+                <p><strong>Total Transactions:</strong> <span id="totalTransactions">0</span></p>
+
+                <h3>Recent Transactions</h3>
+                <ul id="recentTransactions"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/script.js"></script>
+
+</body>
+</html>

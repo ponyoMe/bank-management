@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <link rel="stylesheet" href="/details.css">
+</head>
+<body>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="profile">
+        <div class="profile-pic" th:text="${customer.name.substring(0,1)}"></div>
+        <div class="profile-name" th:text="${customer.name}"></div>
+        <div class="arrow">▼</div>
+    </div>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-item first" onclick="window.location.href='/my_accounts/';">🔑 My Accounts</div>
+    <div class="sidebar-item" onclick="window.location.href='/transaction/';">💰 Transactions</div>
+    <div class="sidebar-item" onclick="window.location.href='/logout';">🚪 Log Out</div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <h2>Account Details</h2>
+    <h3>My Balance</h3>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-left">
+                <div class="card-header">Cards</div>
+            </div>
+            <div class="card-right">
+                <div class="total">Total</div>
+                <div class="total-amount" th:text="${account.balance} + ' $'"></div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Transaction History</h3>
+    <div class="transactions">
+        <div class="transaction" th:each="transaction : ${transactions}">
+
+            <!-- Check if it's an internal transfer -->
+            <div th:if="${transaction.fromAccount.customer.id == transaction.toAccount.customer.id}">
+                <span>Internal Transfer:</span>
+                <span th:text="${transaction.fromAccount.name}"></span>
+                <span> ➝ </span>
+                <span th:text="${transaction.toAccount.name}"></span>
+            </div>
+
+            <!-- If it's an external transfer -->
+            <div th:if="${transaction.fromAccount.customer.id != transaction.toAccount.customer.id}">
+            <span th:if="${transaction.fromAccount.customer.id == customer.id}">
+                Sent to:
+                <span th:text="${transaction.toAccount.customer.name}"></span>
+            </span>
+                <span th:if="${transaction.toAccount.customer.id == customer.id}">
+                Received from:
+                <span th:text="${transaction.fromAccount.customer.name}"></span>
+            </span>
+            </div>
+
+            <span th:text="${transaction.amount} + ' $'"></span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

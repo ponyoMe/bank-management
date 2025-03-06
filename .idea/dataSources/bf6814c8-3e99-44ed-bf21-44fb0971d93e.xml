@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>817</IntrospectionStateNumber>
+      <IntrospectionStateNumber>840</IntrospectionStateNumber>
       <ServerVersion>14.14</ServerVersion>
       <StartupTime>1739947145</StartupTime>
       <TimeZones>true ACDT
@@ -802,7 +802,7 @@ false Zulu
 13722||10|C|G
 13722||-9223372036854775808|U|G
 13722||10|U|G</Grants>
-      <IntrospectionStateNumber>817</IntrospectionStateNumber>
+      <IntrospectionStateNumber>840</IntrospectionStateNumber>
       <ObjectId>14088</ObjectId>
       <OwnerName>ibrahim</OwnerName>
     </database>
@@ -4227,8 +4227,8 @@ false Zulu
     <schema id="261" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>817</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-03-06.01:24:13</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>840</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-03-06.10:10:51</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>ibrahim</OwnerName>
@@ -4291,7 +4291,7 @@ false Zulu
     </table>
     <table id="270" parent="261" name="transactions">
       <ObjectId>24634</ObjectId>
-      <StateNumber>805</StateNumber>
+      <StateNumber>819</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>ibrahim</OwnerName>
     </table>
@@ -4520,23 +4520,24 @@ role_id</ColNames>
       <StoredType>numeric(38,2 digit)|0s</StoredType>
       <TypeId>1700</TypeId>
     </column>
-    <column id="302" parent="270" name="created_by">
-      <Position>3</Position>
-      <StateNumber>804</StateNumber>
-      <StoredType>timestamp(6)|0s</StoredType>
-      <TypeId>1114</TypeId>
-    </column>
-    <column id="303" parent="270" name="from_account_id">
+    <column id="302" parent="270" name="from_account_id">
       <Position>4</Position>
       <StateNumber>804</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="304" parent="270" name="to_account_id">
+    <column id="303" parent="270" name="to_account_id">
       <Position>5</Position>
       <StateNumber>804</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
+    </column>
+    <column id="304" parent="270" name="created_at">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StateNumber>819</StateNumber>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
     </column>
     <foreign-key id="305" parent="270" name="fk7i7kboanveneetad7jyhbr0a7">
       <ColNames>from_account_id</ColNames>

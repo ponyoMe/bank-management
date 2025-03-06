@@ -29,6 +29,9 @@
         <div class="main-content">
             <div class="transactions-header">
                 <h1>Transactions</h1>
+                <a href="/reports/pdf">
+                    <button class="download-statement">Download Statement</button>
+                </a>
             </div>
 
             <!-- INTERNAL TRANSACTION -->
@@ -73,8 +76,20 @@
                     <button type="submit">Send Money</button>
                 </form>
             </div>
+
+            <div class="overview">
+                <h2>Transaction Overview</h2>
+                <p><strong>Total Deposits:</strong> <span id="totalDeposits">$0.00</span></p>
+                <p><strong>Total Withdrawals:</strong> <span id="totalWithdrawals">$0.00</span></p>
+                <p><strong>Total Transactions:</strong> <span id="totalTransactions">0</span></p>
+
+                <h3>Recent Transactions</h3>
+                <ul id="recentTransactions"></ul>
+            </div>
         </div>
     </div>
 </div>
+<script src="/script.js"></script>
+
 </body>
 </html>

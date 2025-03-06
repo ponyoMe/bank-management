@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/admin-dashboard.css}">
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css}">
 </head>
-<body>
-<div class="container">
+<body class="admin-dashboard">
 
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><i class="fa fa-user-lock"></i> <a th:href="@{/admin/users}">Users</a></li>
+            <li><i class="fa fa-credit-card"></i> <a th:href="@{/admin/transactions}">Transaction Monitoring</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit"><i class="fa fa-sign-out-alt"></i> Log Out</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 
-    <h1 th:text="${welcomeMessage}">Default Welcome Message</h1>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="navbar">
+            <span>Admin</span>
+        </div>
 
-    <p>Welcome to admin dashboard.</p>
-
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">Logout</button>
-    </form>
-
+        <div class="content">
+            <h1>Users</h1>
+            <ul class="user-list">
+                <li th:each="customer : ${customers}">
+                    <span class="user-initials" th:text="${#strings.substring(customer.name, 0, 1)}"></span>
+                    <span th:text="${customer.name}"></span> - <span th:text="${customer.email}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 </body>
 </html>

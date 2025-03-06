@@ -1,0 +1,191 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 400px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Admin Dashboard Styles */
+.admin-dashboard {
+    display: flex;
+    height: 100vh; /* Full screen height */
+}
+
+/* Sidebar */
+.admin-dashboard .sidebar {
+    width: 250px;
+    background: #5c7ebc;
+    padding: 20px;
+    height: 100vh;
+    color: white;
+    position: fixed; /* Fix the sidebar to the left */
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.admin-dashboard .sidebar h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.admin-dashboard .sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-dashboard .sidebar ul li {
+    padding: 15px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.admin-dashboard .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.admin-dashboard .sidebar ul li i {
+    margin-right: 10px;
+}
+
+/* Main content */
+.admin-dashboard .main-content {
+    margin-left: 250px; /* Adjust based on sidebar width */
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Navbar */
+.admin-dashboard .navbar {
+    background: #5c7ebc;
+    color: white;
+    padding: 15px;
+    text-align: right;
+    font-size: 16px;
+}
+
+/* Users section */
+.admin-dashboard .content h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* User list */
+.admin-dashboard .user-list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-dashboard .user-list li {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard .user-initials {
+    width: 35px;
+    height: 35px;
+    background: #5c7ebc;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-weight: bold;
+}

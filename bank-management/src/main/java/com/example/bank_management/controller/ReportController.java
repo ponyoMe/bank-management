@@ -14,7 +14,10 @@ import com.example.bank_management.service.CustomerService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/reports")
@@ -46,5 +49,33 @@ public class ReportController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdfBytes);
     }
-}
 
+    @GetMapping("/overview")
+    public Map<String, Object> getTransactionOverview(Authentication authentication) {
+        Long customerId = customerService.findCustomerByEmail(authentication.getName()).getId();
+        List<Transaction> transactions = reportService.getTransactionForCustomer(customerId);
+
+        BigDecimal totalDeposits = BigDecimal.ZERO;
+        BigDecimal totalWithdrawals = BigDecimal.ZERO;
+        int totalTransactions = transactions.size();
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getFromAccount() == null) {
+                totalDeposits = totalDeposits.add(transaction.getAmount());
+            } else if (transaction.getToAccount() == null) {
+                totalWithdrawals = totalWithdrawals.add(transaction.getAmount());
+            }
+        }
+
+        List<Transaction> recentTransactions = transactions.isEmpty() ? List.of() :
+                transactions.subList(0, Math.min(transactions.size(), 5));
+
+        Map<String, Object> overview = new HashMap<>();
+        overview.put("totalDeposits", totalDeposits);
+        overview.put("totalWithdrawals", totalWithdrawals);
+        overview.put("totalTransactions", totalTransactions);
+        overview.put("recentTransactions", recentTransactions);
+
+        return overview;
+    }
+}

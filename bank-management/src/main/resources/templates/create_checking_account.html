@@ -1,71 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <title>Create Checking Account</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .container {
-      width: 50%;
-      margin: auto;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      text-align: center;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    input {
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 16px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/check.css">
+  <title>Document</title>
 </head>
 <body>
+<!-- Navbar -->
+<div class="navbar">
+  <div class="profile">
+    <div class="profile-pic" th:text="${customer.name.substring(0,1)}"></div>
+    <div class="profile-name" th:text="${customer.name}"></div>
+    <div class="arrow">▼</div>
+  </div>
+</div>
 
-<div class="container">
-  <h2>Create Checking Account</h2>
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="sidebar-item first" onclick="window.location.href='/my_accounts/';">🔑 My Accounts</div>
+  <div class="sidebar-item" onclick="window.location.href='/transaction/';">💰 Transactions</div>
+  <div class="sidebar-item" onclick="window.location.href='/logout';">🚪 Log Out</div>
+</div>
+
+
+<div class="main-content center">
+  <h2>Checking Account</h2>
 
   <form action="/my_accounts/create_checking_account" method="post">
     <label for="account_name">Account Name:</label>
-    <input type="text" id="account_name" name="account_name" th:value="${account_name}" required>
+    <input type="text" id="account_name" name="account_name" class="input-field" placeholder="Name" th:value="${account_name}" required>
 
-    <button type="submit">Create Account</button>
+    <button type="submit" class="add-button">Create Account</button>
   </form>
-
-  <a href="/my_accounts" class="back-link">← Back to Accounts</a>
 </div>
+
 
 </body>
 </html>

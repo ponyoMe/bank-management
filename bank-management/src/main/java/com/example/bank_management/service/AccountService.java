@@ -62,7 +62,7 @@ public class AccountService {
 
         Customer customer = customerOpt.get();
 
-        if (accountRepository.findByName(accountName).isPresent()) {
+        if (accountRepository.findByNameAndCustomer(accountName, customer).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Account with this name already exists");
         }
 
@@ -85,13 +85,12 @@ public class AccountService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found");
         }
 
+        Customer customer = customerOpt.get();
 
-        if (accountRepository.findByName(accountName).isPresent()) {
+        if (accountRepository.findByNameAndCustomer(accountName, customer).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Account with this name already exists");
         }
 
-
-        Customer customer = customerOpt.get();
 
         Account newAccount = new Account();
         newAccount.setAccountType("Saving");

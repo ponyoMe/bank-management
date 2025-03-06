@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.53">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
+      <IntrospectionStateNumber>817</IntrospectionStateNumber>
       <ServerVersion>14.14</ServerVersion>
       <StartupTime>1739947145</StartupTime>
       <TimeZones>true ACDT
@@ -802,7 +802,7 @@ false Zulu
 13722||10|C|G
 13722||-9223372036854775808|U|G
 13722||10|U|G</Grants>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
+      <IntrospectionStateNumber>817</IntrospectionStateNumber>
       <ObjectId>14088</ObjectId>
       <OwnerName>ibrahim</OwnerName>
     </database>
@@ -4227,8 +4227,8 @@ false Zulu
     <schema id="261" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>785</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-03-03.22:40:50</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>817</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-03-06.01:24:13</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>526</StateNumber>
       <OwnerName>ibrahim</OwnerName>
@@ -4257,31 +4257,45 @@ false Zulu
       <StoredType>bigint|0s</StoredType>
       <OwnerName>ibrahim</OwnerName>
     </sequence>
-    <table id="265" parent="261" name="accounts">
+    <sequence id="265" parent="261" name="transactions_id_seq">
+      <ObjectId>24633</ObjectId>
+      <SequenceIdentity>1</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>804</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <OwnerName>ibrahim</OwnerName>
+    </sequence>
+    <table id="266" parent="261" name="accounts">
       <ObjectId>24577</ObjectId>
-      <StateNumber>776</StateNumber>
+      <StateNumber>803</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>ibrahim</OwnerName>
     </table>
-    <table id="266" parent="261" name="customer_roles">
+    <table id="267" parent="261" name="customer_roles">
       <ObjectId>24582</ObjectId>
       <StateNumber>777</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>ibrahim</OwnerName>
     </table>
-    <table id="267" parent="261" name="customers">
+    <table id="268" parent="261" name="customers">
       <ObjectId>24588</ObjectId>
       <StateNumber>776</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>ibrahim</OwnerName>
     </table>
-    <table id="268" parent="261" name="roles">
+    <table id="269" parent="261" name="roles">
       <ObjectId>24596</ObjectId>
       <StateNumber>777</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>ibrahim</OwnerName>
     </table>
-    <column id="269" parent="265" name="id">
+    <table id="270" parent="261" name="transactions">
+      <ObjectId>24634</ObjectId>
+      <StateNumber>805</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>ibrahim</OwnerName>
+    </table>
+    <column id="271" parent="266" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4290,78 +4304,96 @@ false Zulu
       <SequenceId>24576</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="270" parent="265" name="account_type">
+    <column id="272" parent="266" name="account_type">
       <Position>2</Position>
       <StateNumber>770</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="271" parent="265" name="balance">
+    <column id="273" parent="266" name="balance">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>770</StateNumber>
-      <StoredType>double precision|0s</StoredType>
-      <TypeId>701</TypeId>
+      <StateNumber>803</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
     </column>
-    <column id="272" parent="265" name="customer_id">
+    <column id="274" parent="266" name="customer_id">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>770</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="273" parent="265" name="fkn6x8pdp50os8bq5rbb792upse">
+    <column id="275" parent="266" name="creation_date">
+      <Position>5</Position>
+      <StateNumber>786</StateNumber>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="276" parent="266" name="locked_until">
+      <Position>6</Position>
+      <StateNumber>787</StateNumber>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="277" parent="266" name="name">
+      <Position>7</Position>
+      <StateNumber>793</StateNumber>
+      <StoredType>varchar(255)|0s</StoredType>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="278" parent="266" name="fkn6x8pdp50os8bq5rbb792upse">
       <ColNames>customer_id</ColNames>
       <ObjectId>24604</ObjectId>
       <StateNumber>776</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24588</RefTableId>
     </foreign-key>
-    <index id="274" parent="265" name="accounts_pkey">
+    <index id="279" parent="266" name="accounts_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24580</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>770</StateNumber>
+      <StateNumber>803</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="275" parent="265" name="accounts_pkey">
+    <key id="280" parent="266" name="accounts_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24581</ObjectId>
       <Primary>1</Primary>
       <StateNumber>770</StateNumber>
       <UnderlyingIndexId>24580</UnderlyingIndexId>
     </key>
-    <column id="276" parent="266" name="customer_id">
+    <column id="281" parent="267" name="customer_id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>771</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <column id="277" parent="266" name="role_id">
+    <column id="282" parent="267" name="role_id">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>771</StateNumber>
       <StoredType>bigint|0s</StoredType>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="278" parent="266" name="fkgee5mori29s8ae8hwcl23qxf0">
+    <foreign-key id="283" parent="267" name="fkgee5mori29s8ae8hwcl23qxf0">
       <ColNames>customer_id</ColNames>
       <ObjectId>24614</ObjectId>
       <StateNumber>778</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24588</RefTableId>
     </foreign-key>
-    <foreign-key id="279" parent="266" name="fknjtvg9npn1etke1ldeffa0ym6">
+    <foreign-key id="284" parent="267" name="fknjtvg9npn1etke1ldeffa0ym6">
       <ColNames>role_id</ColNames>
       <ObjectId>24609</ObjectId>
       <StateNumber>777</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>24596</RefTableId>
     </foreign-key>
-    <index id="280" parent="266" name="customer_roles_pkey">
+    <index id="285" parent="267" name="customer_roles_pkey">
       <ColNames>customer_id
 role_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -4371,14 +4403,14 @@ role_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="281" parent="266" name="customer_roles_pkey">
+    <key id="286" parent="267" name="customer_roles_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24586</ObjectId>
       <Primary>1</Primary>
       <StateNumber>771</StateNumber>
       <UnderlyingIndexId>24585</UnderlyingIndexId>
     </key>
-    <column id="282" parent="267" name="id">
+    <column id="287" parent="268" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4387,25 +4419,25 @@ role_id</ColNames>
       <SequenceId>24587</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="283" parent="267" name="email">
+    <column id="288" parent="268" name="email">
       <Position>2</Position>
       <StateNumber>772</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="284" parent="267" name="name">
+    <column id="289" parent="268" name="name">
       <Position>3</Position>
       <StateNumber>772</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="285" parent="267" name="password">
+    <column id="290" parent="268" name="password">
       <Position>4</Position>
       <StateNumber>772</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="286" parent="267" name="customers_pkey">
+    <index id="291" parent="268" name="customers_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24593</ObjectId>
@@ -4414,20 +4446,20 @@ role_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="287" parent="267" name="customers_pkey">
+    <key id="292" parent="268" name="customers_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24594</ObjectId>
       <Primary>1</Primary>
       <StateNumber>772</StateNumber>
       <UnderlyingIndexId>24593</UnderlyingIndexId>
     </key>
-    <check id="288" parent="268" name="roles_name_check">
+    <check id="293" parent="269" name="roles_name_check">
       <ColNames>name</ColNames>
       <ObjectId>24599</ObjectId>
       <Predicate>(name)::text = ANY ((ARRAY[&apos;ROLE_USER&apos;::character varying, &apos;ROLE_ADMIN&apos;::character varying])::text[])</Predicate>
       <StateNumber>773</StateNumber>
     </check>
-    <column id="289" parent="268" name="id">
+    <column id="294" parent="269" name="id">
       <IdentityKind>by-default</IdentityKind>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4436,13 +4468,13 @@ role_id</ColNames>
       <SequenceId>24595</SequenceId>
       <TypeId>20</TypeId>
     </column>
-    <column id="290" parent="268" name="name">
+    <column id="295" parent="269" name="name">
       <Position>2</Position>
       <StateNumber>773</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="291" parent="268" name="roles_pkey">
+    <index id="296" parent="269" name="roles_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24600</ObjectId>
@@ -4451,7 +4483,7 @@ role_id</ColNames>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="292" parent="268" name="ukofx66keruapi6vyqpv6f2or37">
+    <index id="297" parent="269" name="ukofx66keruapi6vyqpv6f2or37">
       <ColNames>name</ColNames>
       <ObjectId>24602</ObjectId>
       <StateNumber>775</StateNumber>
@@ -4461,17 +4493,80 @@ role_id</ColNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="293" parent="268" name="roles_pkey">
+    <key id="298" parent="269" name="roles_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>24601</ObjectId>
       <Primary>1</Primary>
       <StateNumber>773</StateNumber>
       <UnderlyingIndexId>24600</UnderlyingIndexId>
     </key>
-    <key id="294" parent="268" name="ukofx66keruapi6vyqpv6f2or37">
+    <key id="299" parent="269" name="ukofx66keruapi6vyqpv6f2or37">
       <ObjectId>24603</ObjectId>
       <StateNumber>775</StateNumber>
       <UnderlyingIndexId>24602</UnderlyingIndexId>
+    </key>
+    <column id="300" parent="270" name="id">
+      <IdentityKind>by-default</IdentityKind>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>804</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <SequenceId>24633</SequenceId>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="301" parent="270" name="amount">
+      <Position>2</Position>
+      <StateNumber>804</StateNumber>
+      <StoredType>numeric(38,2 digit)|0s</StoredType>
+      <TypeId>1700</TypeId>
+    </column>
+    <column id="302" parent="270" name="created_by">
+      <Position>3</Position>
+      <StateNumber>804</StateNumber>
+      <StoredType>timestamp(6)|0s</StoredType>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="303" parent="270" name="from_account_id">
+      <Position>4</Position>
+      <StateNumber>804</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="304" parent="270" name="to_account_id">
+      <Position>5</Position>
+      <StateNumber>804</StateNumber>
+      <StoredType>bigint|0s</StoredType>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="305" parent="270" name="fk7i7kboanveneetad7jyhbr0a7">
+      <ColNames>from_account_id</ColNames>
+      <ObjectId>24639</ObjectId>
+      <StateNumber>805</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24577</RefTableId>
+    </foreign-key>
+    <foreign-key id="306" parent="270" name="fkra0an432c5wjo76mojluk0v28">
+      <ColNames>to_account_id</ColNames>
+      <ObjectId>24644</ObjectId>
+      <StateNumber>806</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>24577</RefTableId>
+    </foreign-key>
+    <index id="307" parent="270" name="transactions_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24637</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>804</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="308" parent="270" name="transactions_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>24638</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>804</StateNumber>
+      <UnderlyingIndexId>24637</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

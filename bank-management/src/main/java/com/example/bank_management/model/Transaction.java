@@ -13,39 +13,39 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "from_account_id")
+    @JoinColumn(name = "from_account_id", nullable = false)
     private Account fromAccount;
 
     @ManyToOne
-    @JoinColumn(name = "to_account_id")
+    @JoinColumn(name = "to_account_id", nullable = false)
     private Account toAccount;
 
+    @Column(nullable = false)
     private BigDecimal amount;
 
-    private LocalDateTime createdBy;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    public BigDecimal getAmount() {
-        return amount;
+    // Default Constructor
+    public Transaction() {
+        this.createdAt = LocalDateTime.now();
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(LocalDateTime createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Account getToAccount() {
-        return toAccount;
-    }
-
-    public void setToAccount(Account toAccount) {
+    // Constructor with parameters
+    public Transaction(Account fromAccount, Account toAccount, BigDecimal amount) {
+        this.fromAccount = fromAccount;
         this.toAccount = toAccount;
+        this.amount = amount;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Account getFromAccount() {
@@ -56,11 +56,23 @@ public class Transaction {
         this.fromAccount = fromAccount;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Account getToAccount() {
+        return toAccount;
     }
 
-    public Long getId() {
-        return id;
+    public void setToAccount(Account toAccount) {
+        this.toAccount = toAccount;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

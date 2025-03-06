@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Account List</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Accounts</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<h2>Account List</h2>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="profile">
+        <div class="profile-pic"
+             th:text="${customer.getName().charAt(0)}">
+        </div>
+        <div class="profile-name" th:text="${customer.name}"></div>
+        <div class="arrow">›</div>
+    </div>
+</div>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Account Type</th>
-        <th>Balance</th>
-        <th>Creation Date</th>
-        <th>Locked Until</th>
-        <th>Customer Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="account : ${account_list}">
-        <td th:text="${account.id}"></td>
-        <td th:text="${account.accountType}"></td>
-        <td th:text="${account.balance}"></td>
-        <td th:text="${account.creationDate}"></td>
-        <td th:text="${account.lockedUntil}"></td>
-        <td th:text="${account.customer.name}"></td>
-    </tr>
-    </tbody>
-</table>
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-item first" onclick="window.location.href='/my_accounts/';">🔑 My Accounts</div>
+    <div class="sidebar-item" onclick="window.location.href='/transaction/';">💰 Transactions</div>
+    <div class="sidebar-item" onclick="window.location.href='/logout';">🚪 Log Out</div>
+</div>
 
-<p th:if="${success}" style="color: green;" th:text="${success}"></p>
-<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+<div class="main-content">
+    <h1>My Accounts</h1>
 
+    <p th:if="${success}" style="color: green; font-weight: bold;" th:text="${success}"></p>
+    <p th:if="${error}" style="color: red; font-weight: bold;" th:text="${error}"></p>
+
+    <div class="buttons">
+        <div th:each="account : ${account_list}">
+            <a th:href="@{/my_accounts/{id}(id=${account.id})}" class="button">
+                <span th:text="${account.name}"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="right-buttons">
+    <button class="right-button" onclick="window.location.href='/my_accounts/create_checking_account';">Add Checking Account</button>
+    <button class="right-button" onclick="window.location.href='/my_accounts/create_saving_account';">Add Saving Account</button>
+</div>
 
 </body>
 </html>

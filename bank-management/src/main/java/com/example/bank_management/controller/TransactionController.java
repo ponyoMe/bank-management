@@ -45,7 +45,7 @@ public class TransactionController {
 
         Customer customer = customerOpt.get();
         List<Account> accounts = accountRepository.findByCustomer(customer);
-
+        model.addAttribute("customer", customer);
         model.addAttribute("accounts", accounts); // User's accounts
         model.addAttribute("transaction", new Transaction()); // Empty transaction object
         return "transaction_index";

@@ -21,7 +21,7 @@ public class PdfReportService {
             document.add(new Paragraph(" "));
 
             for (Transaction t : transactions) {
-                document.add(new Paragraph(t.getCreatedBy() + " - " + t.getAmount() + " - " +
+                document.add(new Paragraph(t.getCreatedAt() + " - " + t.getAmount() + " - " +
                         (t.getToAccount() != null ? "To: " + t.getToAccount().getId() : "Withdrawal")));
             }
 

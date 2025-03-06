@@ -1,66 +1,135 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+* {
+    font-family: "Inter", monospace;  /* Set the font to Courier */
+}
+
+/* Верхняя линия */
+.top-line {
+    width: 1440px;
+    height: 68px;
+    top: -2px;
+    background-color: #6D93C2;
+    z-index: 1000;
+    position: fixed;
+}
+
+/* Общие стили */
+html, body {
+    position: fixed;
+    width: 1440px;
+    height: 1024px;
+
+
+    background-color: white;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    overflow: auto; /* Убирает прокрутку */
 }
 
+/* Контейнер формы */
 .container {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 400px;
+    overflow: auto;
+    position: fixed;
+    width: auto;
+    height: 1024px;
+    left: 488px;
+    top: 50px;
+    padding: 32px;
+
+    gap: 20px;
 }
 
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
+.input-label {
     display: block;
     margin-bottom: 5px;
-    color: #555;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+}
+
+/* Заголовок */
+h3{
+    width: 399px;
+    height: 27px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 27px;
+    word-spacing: -5px;
+    letter-spacing: 0;
+
+    color: #969696;
+    padding-bottom: 14px;
+}
+h2 {
+    width: 380px;
+    word-spacing: -16px;
+    font-size: 40px;
+    margin-bottom: 1px;
+    color: #333;
+    text-align: start;
+
+}
+
+/* Группы полей формы */
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* Метки */
+label {
+    display: block;
+    margin-bottom: 4px;
+    color: #9A9A9A;
+    font-size: 18px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 399px;
+    height: 59px;
+    padding: 16px;
+    gap: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid #D9D9D9;
+
+    /* Add these properties to style the typed text like the placeholder */
+    color: #232323;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
+input::placeholder {
+    color: #9A9A9A;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0;
 }
+
 
 .btn {
-    background-color: #007bff;
+    background-color:rgb(54, 122, 255);
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 7px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
-    width: 100%;
+    font-size: 18px;
+    width: 399px;
+    height: 56px;
+    margin-top: 20px;
     transition: background-color 0.3s;
 }
 
@@ -68,12 +137,14 @@ input[type="password"]:focus {
     background-color: #0056b3;
 }
 
+/* Ошибки */
 .error {
     color: red;
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 11px;
+    margin-top: 3px;
 }
 
+/* Текст и ссылки */
 p {
     text-align: center;
     margin-top: 20px;
@@ -86,4 +157,155 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+.line-container {
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    width: 399px;
+    margin: 20px 0;
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #9A9A9A;
+}
+
+.or-text {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #9A9A9A;
+    font-weight: normal;
+}
+
+
+
+/* Стили для кнопки */
+/* Стили для кнопки */
+.btn-google {
+    border: 1px solid #9A9A9A;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 399px;
+    height: 56px;
+    background-color: white;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Центрирует содержимое (текст и иконку) по горизонтали */
+    font-weight: normal;
+    gap: 10px; /* Добавляет отступ между иконкой и текстом */
+}
+
+/* Логотип Google внутри кнопки */
+.google-logo {
+    width: 20px;
+    height: 20px;
+}
+
+/* Изменение фона кнопки при наведении */
+.btn-google:hover {
+    background-color: #b7b7b7;
+}
+
+/* Скрываем стандартный чекбокс */
+.checkbox-hidden {
+    display: none;
+}
+
+/* Контейнер для чекбокса и текста */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+
+
+}
+.checkbox-label {
+    width: 170px;
+    height: 24px;
+
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    word-spacing: -4px;
+}
+
+/* Стили для кастомного чекбокса */
+.checkbox-custom {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #000; /* Более жирная рамка черного цвета */
+    border-radius: 5px; /* Менее скругленные углы */
+    background-color: white;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    position: relative;
+    display: inline-block;
+}
+
+/* Галочка при активации */
+.checkbox-hidden:checked + .checkbox-custom {
+    background-color: #007bff;
+}
+
+/* Центрирование галочки */
+.checkbox-hidden:checked + .checkbox-custom::after {
+    content: '';
+    position: absolute;
+    top: 1px; /* Центрирование сверху */
+    left: 4px; /* Центрирование слева */
+    width: 5px;  /* Размер галочки */
+    height: 8px; /* Размер галочки */
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.floating-label {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.floating-label input {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    font-size: 18px;
+    outline: none;
+}
+
+.floating-label input:focus {
+    border-color: #9A9A9A;
+}
+
+.floating-label label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: #9A9A9A;
+    font-size: 18px;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 12px;
+    font-size: 14px;
+    color: #9A9A9A;
+    background: white;
+    padding: 0 4px;
 }

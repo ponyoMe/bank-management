@@ -1,8 +1,10 @@
 package com.example.bank_management.service;
 
+import com.example.bank_management.model.Account;
 import com.example.bank_management.model.Customer;
 import com.example.bank_management.model.Role;
 import com.example.bank_management.model.RoleType;
+import com.example.bank_management.repository.AccountRepository;
 import com.example.bank_management.repository.CustomerRepository;
 import com.example.bank_management.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -34,18 +38,31 @@ public class CustomerService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private AccountRepository accountRepository;
 
-    public Customer registerCustomer(Customer customer) {
+    public void registerCustomer(Customer customer) {
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
 
         // Assign default ROLE_USER
         Role userRole = roleRepository.findByName("ROLE_USER")
                 .orElseThrow(() -> new RuntimeException("Default role not found"));
 
-
-
         customer.getRoles().add(userRole);
-        return customerRepository.save(customer);
+        customerRepository.save(customer);
+
+
+        Account account = new Account();
+        account.setName("main");
+        account.setAccountType("Checking");
+        account.setCustomer(customer);
+        account.setCreationDate(LocalDateTime.now());
+        account.setLockedUntil(LocalDateTime.now());
+        account.setBalance(new BigDecimal(0));
+        accountRepository.save(account);
+
     }
 
     public Customer findCustomerByEmail(String email) {

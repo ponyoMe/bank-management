@@ -15,7 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register", "/styles.css/**", "/js/**").permitAll()
+                        .requestMatchers("/auth/login", "/auth/register", "/styles.css/**", "/js/**", "/google-icon.png").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN") // now matches "ROLE_ADMIN"
                         .requestMatchers("/dashboard").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                         .anyRequest().authenticated()
